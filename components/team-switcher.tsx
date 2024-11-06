@@ -36,6 +36,7 @@ export function TeamSwitcher({
     logo: React.ReactNode; // Update type to ReactNode
     plan: string;
     url: string;
+    id: string;
   }[];
 }) {
   const { data: session } = useSession();
@@ -49,6 +50,7 @@ export function TeamSwitcher({
         .filter((guild: { deluna: boolean }) => guild.deluna) // Only keep guilds with deluna: true
         .map((guild: { name: string; icon: string | null; id: string }) => ({
           name: guild.name,
+          id: guild.id,
           url: `/dashboard/${guild.id}`, // 길드 페이지 URL
           logo: guild.icon ? (
             <Image
