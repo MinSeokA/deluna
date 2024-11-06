@@ -110,14 +110,26 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 
   // Get guild ID from the pathname
   const guildId = pathname.replace('/dashboard/', '');
+
+  data.navMain = data.navMain.map((item) => {
+    item.url = item.url.replace("[id]", guildId)
+    if (item.items) {
+      item.items = item.items.map((subItem) => {
+        subItem.url = subItem.url.replace("[id]", guildId)
+        return subItem
+      })
+    }
+    return item
+  })
   
+
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
-        <TeamSwitcher teams={data.guilds} />
+        <TeamSwitcher teams={data.guilds} guildId={guildId} />
       </SidebarHeader>
       <SidebarContent>
-        <NavMain items={data.navMain} guildId={guildId} />
+        <NavMain items={data.navMain} />
         <NavProjects projects={data.projects} />
       </SidebarContent>
       <SidebarFooter>

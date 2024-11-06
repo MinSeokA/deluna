@@ -17,13 +17,10 @@ import {
   SidebarMenuSubButton,
   SidebarMenuSubItem,
 } from "@/components/ui/sidebar"
-import { useSession } from "next-auth/react"
 
 export function NavMain({
   items,
-  guildId,
 }: {
-  guildId: string
   items: {
     title: string
     url: string
@@ -35,21 +32,6 @@ export function NavMain({
     }[]
   }[]
 }) {
-  const { data: session } = useSession()
-
-  if (session) {
-    // items 배열에 [id] 길드 ID로 변경
-    items = items.map((item) => {
-      item.url = item.url.replace("[id]", guildId)
-      if (item.items) {
-        item.items = item.items.map((subItem) => {
-          subItem.url = subItem.url.replace("[id]", guildId)
-          return subItem
-        })
-      }
-      return item
-    })
-  }
 
   return (
     <SidebarGroup>
