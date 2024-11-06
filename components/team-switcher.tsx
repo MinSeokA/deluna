@@ -96,7 +96,7 @@ export function TeamSwitcher({
             sideOffset={4}
           >
             <DropdownMenuLabel className="text-xs text-muted-foreground">
-              Guilds
+              길드 목록
             </DropdownMenuLabel>
             {updatedTeams.map((team, index) => (
               <a key={team.name} href={team.url}>
@@ -106,7 +106,7 @@ export function TeamSwitcher({
                 className="gap-2 p-2"
               >
                 <div className="flex size-6 items-center justify-center rounded-sm border">
-                  {team.logo}  {/* Render the logo as a JSX element */}
+                  <div className="size-10">{activeTeam.logo}</div>
                 </div>
                 {team.name}
                 <DropdownMenuShortcut>⌘{index + 1}</DropdownMenuShortcut>
