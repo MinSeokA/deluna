@@ -25,8 +25,6 @@ const GuildDashboard = () => {
   // guildId가 배열일 경우 첫 번째 값을 사용
   const guildIdString = Array.isArray(guildId) ? guildId[0] : guildId;
 
-  console.log(guildIdString);
-
   useEffect(() => {
     if (session?.user?.guilds && guildIdString) {
       const guild = session.user.guilds.find(
@@ -38,8 +36,8 @@ const GuildDashboard = () => {
 
   if (!guildData) {
     return (
-      <div className='max-w-lg mx-auto bg-white shadow-md rounded-lg p-6'>
-        <p>길드를 찾을 수 없습니다.</p>
+      <div className='max-w-lg mx-auto bg-white shadow-md rounded-lg p-6 '>
+        <p className='font-[family-name:var(--font-taebek)]'>길드를 찾을 수 없습니다.</p>
       </div>
     );
   }
